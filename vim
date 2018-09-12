@@ -1,1 +1,1 @@
-/home/mrchazaaa/.vim/
+../../.vim
