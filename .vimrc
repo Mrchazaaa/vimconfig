@@ -1,4 +1,6 @@
 "==================================basic settings====================================="
+"needed for ctags plugin
+nmap <F8> :TagbarToggle<CR>
 "required by vundle, automatically set but just in case
 set nocompatible 
 "required by vundle
@@ -54,8 +56,17 @@ set rtp+=~/.vim/bundle/Vundle.vim
 "begin Vundle's Plugin list
 call vundle#begin()
 
+"code completion
+Plugin 'valloric/youcompleteme'
+
 "auto closing brackets
 Plugin 'https://github.com/jiangmiao/auto-pairs'
+
+"speedy html and css
+Plugin 'mattn/emmet-vim'
+
+"ctags
+Plugin 'https://github.com/majutsushi/tagbar'
 
 "replace words witth register values
 Plugin 'https://github.com/vim-scripts/ReplaceWithRegister'
@@ -119,6 +130,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_typescript_checkers=['tslint', 'tsc']
+let g:syntastic_javascript_checkers=['eslint']
 "====================================syntastic========================================""
 
 "==========================inner indent custon texto object==========================="
@@ -153,6 +165,11 @@ function! s:IndTxtObj(inner)
     normal! $
   endif
 endfunction
+
+"for youcompleteme
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+
+
 "==========================inner indent custon texto object==========================="
 "
 "====================================helpful tips====================================="
