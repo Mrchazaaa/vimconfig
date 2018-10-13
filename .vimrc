@@ -46,6 +46,10 @@ set path+=**
 "nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
 "map better auto completion to shift-tab in insert mode
 inoremap <S-Tab> <C-N>
+"needed for code folding
+set foldmethod=indent
+set foldlevel=20 "should mean all folds are open when opening a file
+set foldcolumn=2
 "==================================basic settings====================================="
 
 
@@ -168,6 +172,9 @@ endfunction
 
 "for youcompleteme
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+
+" for vim comments on c sharp files
+autocmd FileType cs setlocal commentstring=//\ %s
 
 
 "==========================inner indent custon texto object==========================="
