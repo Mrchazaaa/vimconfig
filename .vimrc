@@ -1,4 +1,5 @@
 "==================================basic settings====================================="
+colorscheme ron
 "needed for ctags plugin
 nmap <F8> :TagbarToggle<CR>
 "required by vundle, automatically set but just in case
@@ -96,6 +97,9 @@ Plugin 'https://github.com/vim-syntastic/syntastic'
 
 "typescript syntactic stuff
 Plugin 'https://github.com/leafgarland/typescript-vim'
+
+"syntax highlighting for .vue files
+Plugin 'posva/vim-vue'
 
 "All of your Plugins must be added before the following line
 call vundle#end()
