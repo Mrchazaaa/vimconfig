@@ -13,6 +13,3 @@ require('lazy').setup(require('lazy-plugins'), {
 -- UI components (theme customizations after lazy loads)
 require('ui').setup()
 
--- Language-specific configurations
-require('languages.csharp').setup()
-
