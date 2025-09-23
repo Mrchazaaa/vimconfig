@@ -6,5 +6,5 @@
     ```
     source ~/.config/nvim/vimconfig/vim/.vimrc
 
-    lua require("vimconfig.nvim.init")
+    lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
     ```
