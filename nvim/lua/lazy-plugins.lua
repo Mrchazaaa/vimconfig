@@ -2,7 +2,7 @@ local plugins = {}
 
 -- Load all plugin modules
 local plugin_modules = {
-  "plugins.essentials",
+  "plugins.core",
   "plugins.finder",
   "plugins.theme",
   "plugins.statusline",

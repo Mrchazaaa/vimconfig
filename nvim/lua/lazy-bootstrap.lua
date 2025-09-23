@@ -13,5 +13,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     os.exit(1)
   end
 end
--- Add lazy.nvim to the runtime path BEFORE trying to require it
+
+-- Add lazy.nvim to the runtime path
 vim.opt.rtp:prepend(lazypath)
