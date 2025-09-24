@@ -32,7 +32,6 @@ set signcolumn=yes
 set mouse=a
 set updatetime=1000
 
-
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
