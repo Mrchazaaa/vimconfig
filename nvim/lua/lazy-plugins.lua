@@ -6,7 +6,9 @@ local plugin_modules = {
   "plugins.finder",
   "plugins.theme",
   "plugins.statusline",
-  "plugins.explorer"
+  "plugins.explorer",
+  "plugins.telescope",
+  "plugins.dashboard"
 }
 
 for _, module in ipairs(plugin_modules) do

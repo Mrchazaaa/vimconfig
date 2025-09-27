@@ -5,6 +5,7 @@ map Q gq
 " Allow ESC to enter normal mode in built in terminal
 tnoremap <Esc> <C-\><C-n>
 
+set nowrap 
 set ignorecase
 set smartcase
 set incsearch
@@ -47,3 +48,5 @@ syntax enable
 nnoremap "* "+
 xnoremap "* "+
 onoremap "* "+
+
+set path+=.,**
