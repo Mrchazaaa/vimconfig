@@ -9,7 +9,8 @@ local plugin_modules = {
   "plugins.explorer",
   "plugins.telescope",
   "plugins.dashboard",
-  "plugins.commandcomplete"
+  "plugins.commandcomplete",
+  "plugins.git"
 }
 
 for _, module in ipairs(plugin_modules) do
