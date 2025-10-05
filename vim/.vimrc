@@ -9,15 +9,14 @@ set nowrap
 set ignorecase
 set smartcase
 set incsearch
-set number relativenumber
 " Basic settings
 set encoding=utf-8
 set backspace=indent,eol,start
 set expandtab
 set shiftround
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=-1
-set tabstop=8
+set tabstop=2
 set textwidth=80
 set title
 set hidden
@@ -33,10 +32,19 @@ set signcolumn=yes
 set mouse=a
 set updatetime=1000
 
+set number relativenumber
+
 augroup numbertoggle
   autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  " Only enable relativenumber when the current window has 'number' on locally.
+  autocmd BufEnter,FocusGained,InsertLeave *
+        \ if &l:number |
+        \   setlocal relativenumber |
+        \ else |
+        \ endif
+
+  autocmd BufLeave,FocusLost,InsertEnter *
+        \ setlocal norelativenumber
 augroup END
 
 autocmd FileType cs setlocal commentstring=//\ %s
@@ -50,3 +58,26 @@ xnoremap "* "+
 onoremap "* "+
 
 set path+=.,**
+ 
+command! MessagesToBuf
+      \ redir => m |
+      \ silent messages |
+      \ redir END |
+      \ new |
+      \ put =m
+ 
+" Move the current window to another position
+nnoremap <C-S-Up>    <C-w>K
+nnoremap <C-S-Down>  <C-w>J
+nnoremap <C-S-Left>  <C-w>H
+nnoremap <C-S-Right> <C-w>L
+
+
+" Move between windows with Ctrl + Arrow keys
+nnoremap <C-Up>    <C-w>k
+nnoremap <C-Down>  <C-w>j
+nnoremap <C-Left>  <C-w>h
+nnoremap <C-Right> <C-w>l
+
+nnoremap gg gg0
+nnoremap G G$
