@@ -23,6 +23,7 @@ return {
     },
     config = function()
       require("nvim-tree").setup({
+        sync_root_with_cwd = true,
         sort_by = "case_sensitive",
         view = {
           width = 30,
