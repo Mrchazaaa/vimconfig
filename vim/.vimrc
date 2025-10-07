@@ -81,3 +81,19 @@ nnoremap <C-Right> <C-w>l
 
 nnoremap gg gg0
 nnoremap G G$
+
+
+" --- Scroll window with Alt + Arrow keys ---
+nnoremap <A-Up>    <C-Y>
+nnoremap <A-Down>  <C-E>
+nnoremap <A-Left>  zh
+nnoremap <A-Right> zl
+
+" --- Scroll window with Alt + hjkl ---
+nnoremap <A-h>  zh
+nnoremap <A-j>  <C-E>
+nnoremap <A-k>  <C-Y>
+nnoremap <A-l>  zl
+
+
+let mapleader = " "

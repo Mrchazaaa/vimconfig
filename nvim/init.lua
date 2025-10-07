@@ -13,3 +13,8 @@ require('lazy').setup(require('lazy-plugins'), {
 -- UI components (theme customizations after lazy loads)
 require('ui').setup()
 
+-- Create a Lua scratchfile command
+vim.api.nvim_create_user_command("LuaScratch", function()
+  local scratch_path = vim.fn.stdpath("config") .. "/scratch.lua"
+  vim.cmd("edit " .. scratch_path)
+end, { desc = "Open Lua scratch file" })

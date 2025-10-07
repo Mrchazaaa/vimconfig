@@ -11,7 +11,8 @@ local plugin_modules = {
   "plugins.dashboard",
   "plugins.commandcomplete",
   "plugins.git",
-  "plugins.lsp"
+  "plugins.lsp",
+  "plugins.csv",
 }
 
 for _, module in ipairs(plugin_modules) do
