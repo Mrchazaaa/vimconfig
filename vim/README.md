@@ -6,5 +6,5 @@
     ```
     source /home/mrchazaaa/.config/nvim/vimconfig/vim/.vimrc
 
-    source /home/mrchazaaa/.config/nvim/vimconfig/vim/VimSpecificConfig.vimrc
+    source /home/mrchazaaa/.config/nvim/vimconfig/vim/VimSpecific.vim
     ```

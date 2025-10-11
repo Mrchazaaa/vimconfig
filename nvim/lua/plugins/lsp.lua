@@ -211,14 +211,14 @@ return {
         sh = { "shellcheck" },
       }
 
-      local function try_lint()
-        -- run linters for the current filetype
-        lint.try_lint()
-      end
+      -- local function try_lint()
+      --   -- run linters for the current filetype
+      --   lint.try_lint()
+      -- end
 
-      vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
-        callback = try_lint,
-      })
+      -- vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+      --   callback = try_lint,
+      -- })
     end,
   },
   {
