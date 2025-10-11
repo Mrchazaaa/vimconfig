@@ -33,6 +33,14 @@ jobs:
       run: |
         cp -r . ~/.config/nvim/
 
+    - name: Create init.vim bootstrap file
+      run: |
+        cat > ~/.config/nvim/init.vim << 'EOF'
+        source ~/.config/nvim/vimconfig/vim/.vimrc
+
+        lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
+        EOF
+
     - name: Test basic Neovim startup
       run: |
         timeout 30 nvim --headless -c "lua print('Neovim started successfully')" -c "qall!" || exit 1
