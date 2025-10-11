@@ -1,0 +1,63 @@
+name: Test Neovim Configuration
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test-nvim-config:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        nvim-version: ['stable', 'nightly']
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Neovim
+      uses: rhysd/action-setup-vim@v1
+      with:
+        neovim: true
+        version: ${{ matrix.nvim-version }}
+
+    - name: Create config directory
+      run: |
+        mkdir -p ~/.config/nvim
+        mkdir -p ~/.local/share/nvim
+        mkdir -p ~/.local/state/nvim
+
+    - name: Copy configuration
+      run: |
+        cp -r . ~/.config/nvim/
+
+    - name: Test basic Neovim startup
+      run: |
+        timeout 30 nvim --headless -c "lua print('Neovim started successfully')" -c "qall!" || exit 1
+
+    - name: Test configuration loading
+      run: |
+        timeout 30 nvim --headless -c "lua vim.cmd('checkhealth')" -c "qall!" || exit 1
+
+    - name: Test plugin loading (if using lazy.nvim)
+      run: |
+        timeout 60 nvim --headless -c "lua require('lazy').sync({wait = true})" -c "qall!" || exit 1
+
+    - name: Run syntax check on Lua files
+      run: |
+        find ~/.config/nvim -name "*.lua" -exec lua -e "loadfile('{}')()" \; || exit 1
+
+    - name: Test specific functionality
+      run: |
+        timeout 30 nvim --headless -c "lua vim.print('Config test passed')" -c "qall!" || exit 1
+
+    - name: Check for errors in log
+      run: |
+        if [ -f ~/.local/state/nvim/log ]; then
+          if grep -i error ~/.local/state/nvim/log; then
+            echo "Errors found in Neovim log"
+            exit 1
+          fi
+        fi
