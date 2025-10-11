@@ -47,7 +47,8 @@ jobs:
 
     - name: Verify custom config is loaded
       run: |
-        timeout 30 nvim --headless -c "VerifyConfig" -c "qall!" 2>&1 | grep "CONFIG_LOADED_SUCCESSFULLY" || exit 1
+        timeout 30 nvim --headless -c "VerifyConfig" -c "qall!" 2>&1 | tee /tmp/verify-config-output.log
+        grep "CONFIG_LOADED_SUCCESSFULLY" /tmp/verify-config-output.log || exit 1
 
     - name: Test configuration loading
       run: |
@@ -73,3 +74,20 @@ jobs:
             exit 1
           fi
         fi
+
+    - name: Collect debug artifacts
+      if: always()
+      run: |
+        mkdir -p /tmp/debug-artifacts
+        cp ~/.config/nvim/init.vim /tmp/debug-artifacts/ || true
+        cp /tmp/verify-config-output.log /tmp/debug-artifacts/ || true
+        cp ~/.local/state/nvim/log /tmp/debug-artifacts/nvim.log || true
+        ls -la ~/.config/nvim/ > /tmp/debug-artifacts/config-structure.txt || true
+        nvim --version > /tmp/debug-artifacts/nvim-version.txt || true
+
+    - name: Upload debug artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-logs-${{ matrix.nvim-version }}
+        path: /tmp/debug-artifacts/
