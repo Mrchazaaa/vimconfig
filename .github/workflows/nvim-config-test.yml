@@ -28,11 +28,11 @@ jobs:
 
     - name: Create init.vim bootstrap file
       run: |
-        cat > ~/.config/nvim/init.vim << 'EOF'
-source ~/.config/nvim/vimconfig/vim/.vimrc
+        cat > ~/.config/nvim/init.vim <<'EOF'
+        source ~/.config/nvim/vimconfig/vim/.vimrc
 
-lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
-EOF
+        lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
+        EOF
 
     - name: Install Neovim
       uses: rhysd/action-setup-vim@v1
