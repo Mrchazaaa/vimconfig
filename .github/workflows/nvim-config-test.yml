@@ -15,32 +15,30 @@ jobs:
         nvim-version: ['stable', 'nightly']
 
     steps:
-    - name: Create config directory
-      run: |
-        mkdir -p ~/.config/nvim
-
     - uses: actions/checkout@v4
       with:
-        path: ~/.config/nvim/vimconfig
+        path: vimconfig
+
+    - name: Setup Neovim config directory
+      run: |
+        mkdir -p ~/.config/nvim
+        mkdir -p ~/.local/share/nvim
+        mkdir -p ~/.local/state/nvim
+        mv vimconfig ~/.config/nvim/
+
+    - name: Create init.vim bootstrap file
+      run: |
+        cat > ~/.config/nvim/init.vim << 'EOF'
+source ~/.config/nvim/vimconfig/vim/.vimrc
+
+lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
+EOF
 
     - name: Install Neovim
       uses: rhysd/action-setup-vim@v1
       with:
         neovim: true
         version: ${{ matrix.nvim-version }}
-
-    - name: Create additional directories
-      run: |
-        mkdir -p ~/.local/share/nvim
-        mkdir -p ~/.local/state/nvim
-
-    - name: Create init.vim bootstrap file
-      run: |
-        cat > ~/.config/nvim/init.vim << 'EOF'
-        source ~/.config/nvim/vimconfig/vim/.vimrc
-
-        lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
-        EOF
 
     - name: Test basic Neovim startup
       run: |
