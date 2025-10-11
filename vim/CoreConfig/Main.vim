@@ -2,6 +2,7 @@ call RelativeSource('/CoreConfig/MessagesToBuf.vim')
 call RelativeSource('/CoreConfig/CursorHistory.vim')
 call RelativeSource('/CoreConfig/WindowNavigation.vim')
 call RelativeSource('/CoreConfig/WindowScrolling.vim')
+call RelativeSource('/CoreConfig/ConfigVerification.vim')
 
 " Show a few lines of context around the cursor.
 set scrolloff=5

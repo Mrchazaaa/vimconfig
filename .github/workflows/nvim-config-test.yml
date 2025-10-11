@@ -37,6 +37,10 @@ jobs:
       run: |
         timeout 30 nvim --headless -c "lua print('Neovim started successfully')" -c "qall!" || exit 1
 
+    - name: Verify custom config is loaded
+      run: |
+        timeout 30 nvim --headless -c "VerifyConfig" -c "qall!" 2>&1 | grep "CONFIG_LOADED_SUCCESSFULLY" || exit 1
+
     - name: Test configuration loading
       run: |
         timeout 30 nvim --headless -c "lua vim.cmd('checkhealth')" -c "qall!" || exit 1
