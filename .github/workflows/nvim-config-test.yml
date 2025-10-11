@@ -15,7 +15,13 @@ jobs:
         nvim-version: ['stable', 'nightly']
 
     steps:
+    - name: Create config directory
+      run: |
+        mkdir -p ~/.config/nvim
+
     - uses: actions/checkout@v4
+      with:
+        path: ~/.config/nvim/vimconfig
 
     - name: Install Neovim
       uses: rhysd/action-setup-vim@v1
@@ -23,15 +29,10 @@ jobs:
         neovim: true
         version: ${{ matrix.nvim-version }}
 
-    - name: Create config directory
+    - name: Create additional directories
       run: |
-        mkdir -p ~/.config/nvim
         mkdir -p ~/.local/share/nvim
         mkdir -p ~/.local/state/nvim
-
-    - name: Copy configuration
-      run: |
-        cp -r . ~/.config/nvim/
 
     - name: Create init.vim bootstrap file
       run: |
