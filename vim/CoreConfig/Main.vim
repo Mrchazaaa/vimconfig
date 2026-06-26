@@ -54,18 +54,25 @@ augroup numbertoggle
 augroup END
 
 autocmd FileType cs setlocal commentstring=//\ %s
+augroup markdown_wrap
+  autocmd!
+  autocmd FileType markdown setlocal wrap textwidth=0 formatoptions-=t
+  autocmd BufWinEnter * if &l:filetype ==# 'markdown' | setlocal wrap textwidth=0 formatoptions-=t | endif
+augroup END
 
 set path+=.,**
  
 nnoremap gg gg0
+xnoremap gg gg0
 nnoremap G G$
+xnoremap G G$
 
 let mapleader = " "
 
 filetype indent plugin on
 syntax enable
 
-set foldmethod=indent
+set foldmethod=syntax
 set foldenable
 set foldlevel=99
 set foldlevelstart=99
