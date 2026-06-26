@@ -1,10 +1,16 @@
 # Setup
 
-1. Clone vimconfig into /home/username/.config/nvim
-2. Create an init.vim in /home/username/.config/nvim:
+From the repo root, run:
 
-    ```
-    source ~/.config/nvim/vimconfig/vim/.vimrc
+```bash
+./install.sh --nvim
+```
 
-    lua dofile(vim.fn.stdpath('config') .. '/vimconfig/nvim/init.lua')
-    ```
+Or run the Neovim-only installer directly:
+
+```bash
+./nvim/install.sh
+```
+
+This writes `~/.config/nvim/init.vim` as a shim that sources the shared Vim
+config and loads `nvim/init.lua`.

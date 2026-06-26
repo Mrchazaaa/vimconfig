@@ -1,10 +1,16 @@
 # Setup
 
-1. Clone vimconfig
-2. Create the following ~/.vimrc, which points to vim/config/vim/.vimrc living in another directory:
+From the repo root, run:
 
-    ```
-    source /home/mrchazaaa/.config/nvim/vimconfig/vim/.vimrc
+```bash
+./install.sh --vim
+```
 
-    source /home/mrchazaaa/.config/nvim/vimconfig/vim/VimSpecific.vim
-    ```
+Or run the Vim-only installer directly:
+
+```bash
+./vim/install.sh
+```
+
+This writes `~/.vimrc` as a shim that sources the shared Vim config and
+`vim/VimSpecific.vim`.
