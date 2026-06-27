@@ -82,6 +82,29 @@ ensure_command() {
   command -v "$command_name" >/dev/null 2>&1 || die "$command_name installation did not complete successfully."
 }
 
+install_npm_package() {
+  if command -v brew >/dev/null 2>&1; then
+    install_packages node
+  else
+    install_packages npm
+  fi
+}
+
+ensure_npm() {
+  if command -v npm >/dev/null 2>&1; then
+    return 0
+  fi
+
+  log "npm is not installed."
+  if ask_yes_no "Would you like to install npm now?"; then
+    install_npm_package
+  else
+    die "npm is required for Mason to install several Neovim language servers."
+  fi
+
+  command -v npm >/dev/null 2>&1 || die "npm installation did not complete successfully."
+}
+
 backup_file() {
   local path="$1"
   local timestamp

@@ -100,6 +100,9 @@ main() {
   log "Target checkout: $INSTALL_DIR"
 
   ensure_command git git "Would you like to install git now?"
+  if [[ "$INSTALL_NVIM" -eq 1 ]]; then
+    ensure_npm
+  fi
 
   install_or_update_repo
 

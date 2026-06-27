@@ -15,6 +15,7 @@ main() {
   local nvim_content
 
   ensure_command nvim neovim "Would you like to install Neovim now?"
+  ensure_npm
 
   nvim_content="source $REPO_ROOT/vim/.vimrc
 
@@ -25,4 +26,3 @@ lua dofile('$REPO_ROOT/nvim/init.lua')"
 }
 
 main "$@"
-
